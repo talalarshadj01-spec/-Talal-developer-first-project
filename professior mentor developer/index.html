@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Prof. Talal — Animated Logo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Friendly, scholarly font combo -->
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital,wght@0,400;1,400&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="wrap">
+    <!-- Logo Card -->
+    <div class="logo-card" aria-label="Professor logo for Talal">
+      <!-- SVG LOGO (inline so CSS/JS can animate parts) -->
+      <svg class="prof-logo" viewBox="0 0 300 260" role="img" aria-labelledby="title desc">
+        <title id="title">Prof. Talal Logo</title>
+        <desc id="desc">A minimal professor avatar with mortarboard, glasses, and moustache.</desc>
+
+        <!-- subtle glow circle -->
+        <defs>
+          <filter id="softGlow" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="6" result="blur" />
+            <feMerge>
+              <feMergeNode in="blur"/>
+              <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+          </filter>
+        </defs>
+
+        <!-- head outline -->
+        <circle cx="150" cy="120" r="58" class="head" />
+
+        <!-- hat -->
+        <g class="hat" transform="translate(0,0)">
+          <polygon class="cap" points="150,38 250,72 150,106 50,72" />
+          <rect class="band" x="110" y="94" width="80" height="12" rx="6" />
+          <line class="tassel" x1="205" y1="80" x2="230" y2="120" />
+          <circle class="tassel-knot" cx="205" cy="80" r="4" />
+        </g>
+
+        <!-- glasses -->
+        <g class="glasses">
+          <circle class="rim left"  cx="125" cy="120" r="20" />
+          <circle class="rim right" cx="175" cy="120" r="20" />
+          <rect class="bridge" x="145" y="117" width="10" height="6" rx="3" />
+          <!-- eyes (blink scales these) -->
+          <ellipse class="eye left"  cx="125" cy="120" rx="6" ry="6" />
+          <ellipse class="eye right" cx="175" cy="120" rx="6" ry="6" />
+        </g>
+
+        <!-- moustache -->
+        <g class="stache" filter="url(#softGlow)">
+          <path class="curl left"
+                d="M120,145
+                   C110,140 98,146 95,154
+                   C95,132 120,128 130,140" />
+          <path class="curl right"
+                d="M180,145
+                   C190,140 202,146 205,154
+                   C205,132 180,128 170,140" />
+        </g>
+
+        <!-- nameplate underline -->
+        <path class="underline"
+              d="M70,200 Q150,220 230,200" />
+      </svg>
+
+      <div class="title">
+        <h1>Prof. Talal</h1>
+        <p>Web Developer • Problem Solver • Mentor</p>
+      </div>
+
+      <button class="hat-tip" aria-label="Tip the hat">🎓 Tip Hat</button>
+    </div>
+
+    <footer class="hint">
+      <!-- Optional: swap background to your image in CSS. -->
+      Click the hat button or hover the logo. Eyes blink automatically.
+    </footer>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,194 @@
+:root{
+  --bg1:#0f1226;
+  --bg2:#1a1e3a;
+  --card:#0c0f21cc;
+  --ink:#e9ecff;
+  --ink-soft:#b8c0ff;
+  --accent:#8aa4ff;
+  --accent-2:#ffd166;
+  --line:#2b305a;
+}
+
+*{ box-sizing:border-box; }
+
+html,body{
+  height:100%;
+}
+
+body{
+  margin:0;
+  color:var(--ink);
+  /* Works immediately; swap to an image if you prefer (see below). */
+  background: radial-gradient(80% 120% at 20% 10%, var(--bg2), var(--bg1)) fixed;
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
+}
+
+.wrap{
+  min-height:100%;
+  display:grid;
+  place-items:center;
+  padding:32px 16px;
+}
+
+.logo-card{
+  width:min(720px, 92vw);
+  background:var(--card);
+  backdrop-filter: blur(8px);
+  border:1px solid var(--line);
+  border-radius:24px;
+  padding:28px 24px 20px;
+  display:grid;
+  gap:18px;
+  justify-items:center;
+  box-shadow: 0 20px 60px rgba(0,0,0,.35);
+}
+
+.prof-logo{
+  width:min(520px, 86vw);
+  height:auto;
+  display:block;
+  cursor:pointer;
+}
+
+/* SVG styling */
+.head{
+  fill:#1d2246;
+  stroke:var(--ink-soft);
+  stroke-width:2.5;
+}
+
+.cap{
+  fill:var(--ink);
+  opacity:.96;
+  transform-origin:150px 80px;
+}
+.band{
+  fill:var(--accent);
+  opacity:.85;
+}
+.tassel{
+  stroke:var(--accent-2);
+  stroke-width:4;
+  stroke-linecap:round;
+}
+.tassel-knot{
+  fill:var(--accent-2);
+}
+
+.glasses .rim{
+  fill:none;
+  stroke:var(--ink);
+  stroke-width:3;
+}
+.glasses .bridge{
+  fill:var(--ink);
+  opacity:.9;
+}
+.eye{
+  fill:var(--ink);
+  transform-origin: center;
+  animation: blink 6s infinite;
+}
+
+.stache path{
+  fill:none;
+  stroke:var(--ink);
+  stroke-width:4;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  filter: drop-shadow(0 1px 0 rgba(0,0,0,.25));
+  animation: stacheWiggle 3.5s ease-in-out infinite;
+}
+
+.underline{
+  fill:none;
+  stroke:var(--accent);
+  stroke-width:3;
+  stroke-linecap:round;
+  stroke-dasharray: 6 10;
+  animation: dashFlow 10s linear infinite;
+}
+
+/* Title block */
+.title{
+  text-align:center;
+}
+.title h1{
+  font-family: "DM Serif Display", serif;
+  font-size: clamp(28px, 5vw, 44px);
+  letter-spacing:.5px;
+  margin: 0 0 6px;
+}
+.title p{
+  margin: 0;
+  font-weight: 400;
+  font-size: clamp(12px, 2.6vw, 16px);
+  color: var(--ink-soft);
+}
+
+/* Button */
+.hat-tip{
+  margin-top:6px;
+  border:1px solid var(--line);
+  background: transparent;
+  color:var(--ink);
+  padding:10px 14px;
+  border-radius:999px;
+  font-weight:600;
+  cursor:pointer;
+  transition: transform .15s ease, background .15s ease, box-shadow .2s ease;
+}
+.hat-tip:hover{
+  transform: translateY(-1px);
+  background: #121638;
+  box-shadow: 0 8px 28px rgba(0,0,0,.35);
+}
+.hat-tip:active{ transform: translateY(0); }
+
+/* Hover interactions */
+.logo-card:hover .cap{
+  animation: hatFloat 2.6s ease-in-out infinite;
+}
+.logo-card:hover .glasses .rim{
+  filter: drop-shadow(0 0 10px rgba(255,255,255,.15));
+}
+
+/* Keyframes */
+@keyframes blink{
+  0%, 3%, 100% { transform: scaleY(1); }
+  1.5%, 2% { transform: scaleY(0.1); } /* quick blink */
+  50% { transform: scaleY(1); }
+  51.5%, 52% { transform: scaleY(0.12); } /* second blink */
+}
+@keyframes stacheWiggle{
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-1.2px); }
+}
+@keyframes hatFloat{
+  0%,100% { transform: rotate(0deg) translateY(0); }
+  50% { transform: rotate(-2deg) translateY(-2px); }
+}
+@keyframes dashFlow{
+  to { stroke-dashoffset: -160; }
+}
+
+/* Accessibility: reduce motion */
+@media (prefers-reduced-motion: reduce){
+  .eye, .stache path, .cap, .underline { animation: none !important; }
+}
+
+/* ---- OPTIONAL: Use an image background ----
+   1) Put your image in: /professor-logo/img/bg.jpg
+   2) Replace the body background with the line below (uncomment it)
+   3) Make sure the path is correct relative to THIS css file (../img/bg.jpg)
+*/
+/*
+body{
+  background: #000 url("../img/bg.jpg") center/cover fixed no-repeat;
+}
+*/
+
+/* Small devices */
+@media (max-width: 380px){
+  .hat-tip{ padding:8px 12px; font-size:14px; }
+}
